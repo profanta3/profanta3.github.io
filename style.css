@@ -1,0 +1,275 @@
+:root {
+    --neon-blue: #38bdf8;
+    --neon-purple: #bc13fe;
+    --deep-space: #020617;
+    --glass: rgba(15, 23, 42, 0.75);
+    --text-muted: #94a3b8;
+}
+
+/* Global Reset */
+body {
+    margin: 0;
+    background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 70%, #020617 100%);
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+
+/* Update your .section in style.css */
+.section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Professional ease-out */
+    padding: 120px 20px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Headings */
+.section-title {
+    font-size: 2rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.section-title span {
+    color: var(--neon-purple);
+    font-family: monospace;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+/* Navigation */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* Gallery Satellite Effect */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 8px;
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(0.5) contrast(1.2);
+}
+
+/* The Scanline Animation */
+.scanline::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 0 10px var(--neon-blue);
+    animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+/* Contact Buttons */
+.contact-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin: 10px;
+    transition: all 0.3s;
+    background: rgba(56, 189, 248, 0.05);
+}
+
+.contact-btn:hover {
+    background: var(--neon-blue);
+    color: var(--deep-space);
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* Profile Image Glow */
+.profile-frame {
+    border: 3px solid var(--neon-purple);
+    border-radius: 50%;
+    box-shadow: 0 0 30px var(--neon-purple);
+}
+
+/* Twinkle Stars */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.5);
+    }
+}
+
+#star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    /* Ensure the zoom comes from the center */
+    transform-origin: center center;
+    /* Smooth out the hardware acceleration */
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+}
+
+/* Add this to your style.css */
+#star-container.warping {
+    transition: transform 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95),
+        filter 0.5s ease-in-out;
+    filter: blur(2px) brightness(1.5);
+}
+
+/* Base scroll behavior is already in your body, 
+   but let's make sure it's explicitly defined */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navigation HUD Enhancements */
+.glass-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 3rem;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--neon-blue);
+}
+
+.logo-icon {
+    width: 20px;
+    filter: drop-shadow(0 0 5px var(--neon-blue));
+}
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid transparent;
+}
+
+/* Icon Styling */
+.nav-item i {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover States */
+.nav-item:hover {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.nav-item:hover i {
+    transform: translateY(-2px);
+    color: var(--neon-blue);
+    filter: drop-shadow(0 0 8px var(--neon-blue));
+}
+
+/* Active State Indicator (The Scanning Bar) */
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    background: var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    border-radius: 2px;
+}
